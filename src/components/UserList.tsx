@@ -26,7 +26,7 @@ const UserList: React.FC<UserListProps> = ({ users, userRole }) => {
     } catch (error) {
       console.error('Error fetching users:', error);
     } finally {
-      setLoading(false); // Stop loading regardless of outcome
+      setLoading(false); 
     }
   };
 

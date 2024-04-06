@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { registerUser } from '../api/api';
 import UserForm from './forms/UserForm';
 
@@ -19,7 +19,7 @@ const Signup: React.FC = () => {
 
   return (
     <div>
-      <h2>Signup</h2>
+      <h2>Signup or <span><Link to="/login">Back to Login</Link></span></h2>
       <UserForm
         includePassword={true}
         includeRole={false}

@@ -4,4 +4,8 @@ export interface User {
     occupation: string;
     address: string;
     email: string;
+    role: {
+      id: number;
+      name: string;
+    }
   }

@@ -45,6 +45,7 @@ const UserList: React.FC<UserListProps> = ({ users, userRole }) => {
             <th>Occupation</th>
             <th>Address</th>
             <th>Email</th>
+            <th>Role</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -56,6 +57,7 @@ const UserList: React.FC<UserListProps> = ({ users, userRole }) => {
               <td>{user.occupation}</td>
               <td>{user.address}</td>
               <td>{user.email}</td>
+              <td>{user.role.name}</td>
               <td>
                 {userRole === 'ADMIN' ? (
                   <>

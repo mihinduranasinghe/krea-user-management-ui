@@ -15,10 +15,10 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    const role = localStorage.getItem('userRole'); // Retrieve the role
+    const role = localStorage.getItem('userRole'); 
     if (token && role) {
       setIsAuthenticated(true);
-      setUserRole(role); // Set the role
+      setUserRole(role); 
     }
   }, []);
 
@@ -52,8 +52,8 @@ const App: React.FC = () => {
           <Route path="/signup" element={!isAuthenticated ? <Signup /> : <Navigate replace to="/" />} />
           {isAuthenticated && (
             <>
-              <Route path="/add" element={userRole === 'ADMIN' ? <AddUserForm onAddUser={handleAddUser} /> : <Navigate replace to="/" />} />
-              <Route path="/edit/:id" element={<UserEditForm onUpdateUser={handleUpdateUser} />} />
+              <Route path="/add" element={userRole === 'ADMIN' ? <AddUserForm isAdmin={true} onAddUser={handleAddUser} /> : <Navigate replace to="/" />} />
+              <Route path="/edit/:id" element={<UserEditForm onUpdateUser={handleUpdateUser} isAdmin={userRole === 'ADMIN'} />} />
             </>
           )}
         </Routes>

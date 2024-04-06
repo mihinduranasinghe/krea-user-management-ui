@@ -1,7 +1,6 @@
-// src/components/Signup.tsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { registerUser } from '../api/api'; // Ensure you have this function in your api.ts
+import { registerUser } from '../api/api'; 
 
 const Signup: React.FC = () => {
   const [name, setName] = useState('');
@@ -9,12 +8,12 @@ const Signup: React.FC = () => {
   const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      // Update this call based on your backend requirements
       const newUser = await registerUser({
         name,
         occupation,
@@ -24,9 +23,10 @@ const Signup: React.FC = () => {
       });
       console.log('Registration successful', newUser);
       navigate('/'); // Or navigate to the login page: navigate('/login');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error adding user:', error);
-      // Optionally, implement error handling, e.g., displaying a notification
+      const message = (error.response?.data?.error.message.slice(0, 100) || 'An unexpected error occurred') + (error.response?.data?.error.message.length > 100 ? '...' : '');
+      setErrorMessage(message);
     }
   };
 
@@ -35,6 +35,7 @@ const Signup: React.FC = () => {
       <div className="card mt-4">
         <div className="card-body">
           <h2 className="card-title mb-4">Sign Up</h2>
+          {errorMessage && <div className="alert alert-danger" role="alert">{errorMessage}</div>}
           <form onSubmit={handleFormSubmit}>
             <div className="form-group">
               <label htmlFor="name">Name:</label>

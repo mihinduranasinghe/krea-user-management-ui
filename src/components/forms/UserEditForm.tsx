@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getUserById, updateUser, addUser } from '../api/api';
-import { User } from '../interfaces/User';
+import { getUserById, updateUser, addUser } from '../../api/api';
+import { User } from '../../interfaces/User';
 
 interface UserEditFormProps {
   onUpdateUser?: (user: User) => void;

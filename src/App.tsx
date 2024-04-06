@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate, Navigate } from 'react-router-dom';
 import UserList from './components/UserList';
-import AddUserForm from './components/AddUserForm';
-import UserEditForm from './components/UserEditForm';
+import AddUserForm from './components/AddUser';
+import UserEditForm from './components/forms/UserEditForm';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import { User } from './interfaces/User';

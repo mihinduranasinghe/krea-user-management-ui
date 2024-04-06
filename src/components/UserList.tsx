@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getUsers, deleteUser } from '../api/api';
 import { User } from '../interfaces/User';
+import LoadingSpinner from './loading/LoadingSpinner';
 
 interface UserListProps {
   users: User[];
@@ -10,18 +11,22 @@ interface UserListProps {
 
 const UserList: React.FC<UserListProps> = ({ users, userRole }) => {
   const [userList, setUserList] = useState<User[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     fetchUsers();
   }, []);
 
   const fetchUsers = async () => {
+    setLoading(true);
     try {
       const response = await getUsers();
       const fetchedUsers: User[] = response.data.users;
       setUserList(fetchedUsers);
     } catch (error) {
       console.error('Error fetching users:', error);
+    } finally {
+      setLoading(false); // Stop loading regardless of outcome
     }
   };
 
@@ -33,6 +38,10 @@ const UserList: React.FC<UserListProps> = ({ users, userRole }) => {
       console.error('Error deleting user:', error);
     }
   };
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <div className="container">

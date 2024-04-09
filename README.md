@@ -1,4 +1,4 @@
-# KREA User Management System Back End
+# KREA User Management System Front End
 
 ### `npm start`
 
